@@ -1,0 +1,18 @@
+name: Run Tests #its just a meame it can be anything like CI/CD Pipeline
+
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2 #This action downloads (checks out) your repository code into the GitHub runner’s temporary environment.
+
+      - name: Set up Python #it is use to label the step in the workflow so humans can easily identify it.
+        uses: actions/setup-python@v2 #This action installs Python on the virtual GitHub server (runner).
+        with:
+          python-version: '3.10'
+      - name: Install pytest # pytest is a liary which finds all the files that starts with test_ and run the functions inside it which also starts with test_
+        run: pip install pytest
+      - name: Run tests
+        run: pytest
